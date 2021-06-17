@@ -69,7 +69,7 @@ A user should be able to view and recall a certain history item by using a comma
 similar to ’!2’. This would then use the string “But it was delicious.” as input and
 tokenize.
 
-## Building a Simple UI
+## A: Building a Simple UI
 The first milestone for your project is to complete a simple functioning
 user interface (which means it does not have to be anything fancy). It
 should have an indicator on the left to notify the user that the program
@@ -87,7 +87,7 @@ $ my fancy interface thing
 my fancy interface thing
 ```
 
-## Working with Strings
+## B:Working with Strings & memory allocation for strings
 Inside this repository there are two header files, **tokenizer.h** and **history.h**, 
 which declare functions your project will define. You should explore the
 contents of each file so that you are familiar with the instructions to
@@ -101,6 +101,7 @@ functions declared and described (but not defined) in tokenizer.h:
 3.  `char *word_start(char *s); // * to first (non-space) char in first word in s`
 4.  `char *word_terminator(char *word);   // * to char after end of word
 5.  `int count_words(char *s); // the number of words in s`
+6.  `char *copy_str(char *inStr, short len);` // return a pointer to a (terminated) copy of inStr 
 
 The declarations of these functions in `tokenizer.h` includes a more
 comprehensive description of each function's semantics.  **We strongly
@@ -116,30 +117,20 @@ return the correct type declared in the method declaration. **Your code should i
 Lastly, you are **not allowed to use any libraries except stdio.h and stdlib.h**
 in your source code.
 
-## Dealing with Memory Allocation
-The third milestone of your project will require you to allocate and
-free memory.  You must define and test the 
-following functions declared in `tokenizer.h`.
-
-1.  `char *copy_str(char *inStr, short len);`
-2.  `void print_tokens(char**);`
-3.  `void free_tokens(char**);`
-
-To test your functions, you should hardcode the allocation of an array
-of strings (char\*\*).
-
-## Putting it All Together
+## C: Adding tokens
 Now that you have all the pieces for the tokenizer defined, the last
 part is to put them together and define the tokenizer:
 
-`char **tokenize(char *s);`
+1.  `char **tokenize(char *s);`
+2.  `void print_tokens(char**);`
+3.  `void free_tokens(char**);`
 
 As explained in the Overview, the tokenize method should accept a string
 of characters as input and return an array of tokens. It is important to
 understand that you must determine the amount of tokens prior to
 allocating space for the array, and similarly with each token.
 
-## Maintaining History
+## D. Maintaining History
 The final milestone of the project is to build the history component.
 The history can be represented as a linked list data structure, with
 each node containing:

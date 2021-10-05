@@ -31,6 +31,8 @@ int main(){
   //printf("The # of chars is %d.\n", countChars);
   //tokenize(string);
   //print_tokens(tokens);
+  //free_tokens(tokens);
+
   history = init_history();
   printf("About to add to history...\n");
   printf("ID in the history now is %d\n", history->root->id);

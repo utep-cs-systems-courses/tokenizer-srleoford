@@ -85,10 +85,6 @@ char *copy_str(char *inStr, short len){
   return duplicate;
 }
 
-void freeStr(char *copy){
-  free(copy);
-}
-
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 
    space-separated tokens from zero-terminated str.
 
@@ -126,7 +122,7 @@ void free_tokens(char **tokens){
   int i;
 
   for (i = 0; *(tokens+i) != NULL; i++)
-    freeStr(*(tokens+i));
+    free(*(tokens+i));
 }
 
 /* Given a pointer to a list of char pointers that point to strings and an ID, return the pointer of the at that ID*/

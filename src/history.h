@@ -53,32 +53,35 @@ void add_history(List *list, char *str){
    List* list - the linked list
    int id - the id of the Item to find */
 char *get_history(List *list, int id){
-  printf("Traversing through list...\n");
   List *curr = list;
 
   while (curr->root != NULL){
-    printf("Current value is %d\n", curr->root->id);
-    printf("Current string is %s\n", curr->root->str);
     if (curr->root->id == id)
       return curr->root->str;
     else {
-      printf("Item %d doesn't match Item %d\n", id, curr->root->id);
       curr->root = curr->root->next;
     }
   }
-  printf("Item %d isn't in history\n", id);
   return NULL;
 }
 
 /* Print the entire contents of the list. */
 void print_history(List *list){
   while (list->root != NULL){
-    printf("Entry %d: %s\n", list->root->id+1, list->root->str);
+    printf("Entry %d: %s\n", list->root->id, list->root->str);
     list->root = list->root->next;
   }
 }
 
 /* Free the history list and the strings it references. */
-void free_history(List *list);
+void free_history(List *list){
+  List *curr = list;
+  while (curr->root != NULL){
+    list->root = curr->root;
+    curr->root = curr->root->next;
+    free(list->root->str);
+    free(list->root);
+  }
+}
 
 #endif

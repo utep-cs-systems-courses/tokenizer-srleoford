@@ -35,12 +35,12 @@ int main(){
 
   history = init_history();
   add_history(history, string);
-  printf("History str: %s\n", history->root->str);
-  printf("History ID: %d\n", history->root->id);
-  printf("History next: %s\n", (history->root->next == NULL) ? YES: NO);
   add_history(history, "I guess that's over.\n");
   add_history(history, "Just kidding! Here's more strings fo' yo' history!\n");
-  printf("\nString in history is %s\n", get_history(history, 1));
+  printf("\nID %d in history is %s\n", 2, get_history(history, 2));
+  print_history(history);
+  free_history(history);
+  print_history(history);
   
   return 0;
 }

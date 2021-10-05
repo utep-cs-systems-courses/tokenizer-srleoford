@@ -1,12 +1,17 @@
 CFLAGS = -g -O3
-EXEC = main
+EXEC = main tester
 
-all: main
+all: main tester
 
 main.o: tokenizer.h history.h main.c
+	gcc -c $^ $(CFLAGS)
+tester.o: tokenizer.h history.h tester.c
 	gcc -c $^ $(CFLAGS)
 
 main: main.o
 	gcc -o $@ $^ $(CFLAGS)
+tester: tester.o
+	gcc -o $@ $^ $(CFLAGS)
+
 clean:
-	rm -f *.o $(EXEC) *~ 
+	rm -f *.o *~ *.h.gch $(EXEC) 

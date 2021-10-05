@@ -3,13 +3,13 @@
 #include "tokenizer.h"
 #include "history.h"
 
+char *duplicate;		/* Seperate string for duplication */
+
 int main(){
   int i;
   char* string = "Hello world! Look!!! My beautiful wife is checking out my work! Isn't she amazing?!";
-  char* duplicate;
-  char **tokens;
 
-  printf("%s\n\n", string);
+  printf("Test string is: %s\n\n", string);
   //for (i = 0; string[i] != '\0'; i++){
     //printf("Is there a char at position is %d? %s\n", i,
     //	   (non_space_char(string[i]) == 1) ? "Yes" : "No");
@@ -29,9 +29,13 @@ int main(){
   //printf("The first char of the first word in string is %c.\n", word_start(string));
   //printf("The last char of the first word in string is %c.\n", word_end(string));
   //printf("The # of chars is %d.\n", countChars);
-  tokens = tokenize(string);
-  print_tokens(tokens);
-  free_tokens(tokens);
+  //tokenize(string);
+  //print_tokens(tokens);
+  history = init_history();
+  printf("About to add to history...\n");
+  printf("ID in the history now is %d\n", history->root->id);
+  add_history(history, "Testing string");
+  printf("String in history is %s\n", history->root->str);
   
   return 0;
 }

@@ -1,12 +1,11 @@
-#ifndef _TOKENIZER_
-#define _TOKENIZER_
-
 #include <stdlib.h>
 #include <stdio.h>
 
+#ifndef _TOKENIZER_
+#define _TOKENIZER_
 
 enum boolean {NO, YES};
-char **tokens;
+char *tokens[5000];
 
 /* Return true (non-zero) if c is a whitespace characer
    ('\t' or ' ').  
@@ -46,7 +45,7 @@ char *word_start(char *str){
 } 
 
 /* Returns a pointer end char following *word */
-char *word_end(char *word){
+char *word_terminator(char *word){
   int i;
   
   for (i = space_char(word[0] == YES) ? 1 : 0;	/* When pointer is on a space char after word */
@@ -103,13 +102,11 @@ char **tokenize(char* str){
   int i;
   char *wordp;
   char *nextwordp;
-  char *tokens[count_words(str)];
 
   for (i = 0, wordp = str; i < count_words(str); i++){	/* For every word in the original string */
     wordp = word_start(wordp);
-    nextwordp = word_end(wordp);
-    *(tokens+i) = copy_str(wordp, nextwordp-wordp);
-    //printf("Successfully copied token %s from string, which is %d chars long\n", *(tokens+i), nextwordp-wordp);
+    nextwordp = word_terminator(wordp);
+    tokens[i] = copy_str(wordp, nextwordp-wordp);
     wordp = nextwordp;
   }
 
@@ -121,7 +118,7 @@ void print_tokens(char **tokens){
   int i;
   
   for (i = 0; *(tokens+i) != NULL; i++)
-    printf("%s\n", *(tokens+i));
+    printf("%d: %s\n", i+1, *(tokens+i));
 }
 
 /* Frees all tokens and the vector containing them. */
@@ -130,6 +127,15 @@ void free_tokens(char **tokens){
 
   for (i = 0; *(tokens+i) != NULL; i++)
     freeStr(*(tokens+i));
+}
+
+/* Given a pointer to a list of char pointers that point to strings and an ID, return the pointer of the at that ID*/
+char *get_token(char **tokens, int id){
+  int i;
+
+  for (i = 0; i < id-1; i++)
+    ;
+  return *(tokens+i);
 }
 
 #endif

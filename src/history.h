@@ -40,13 +40,11 @@ void add_history(List *list, char *str){
   newItem->next = NULL;
 
   List *curr = list;
-  if (list->root == NULL)
-    list->root = newItem;
+  if (curr->root == NULL)
+    curr->root = newItem;
   else {
-    curr = list;
-    while (curr->root->next != NULL){
+    while (curr->root->next != NULL)
       curr->root = curr->root->next;
-    }
     curr->root->next = newItem;
   }
 }
@@ -60,6 +58,7 @@ char *get_history(List *list, int id){
 
   while (curr->root != NULL){
     printf("Current value is %d\n", curr->root->id);
+    printf("Current string is %s\n", curr->root->str);
     if (curr->root->id == id)
       return curr->root->str;
     else {

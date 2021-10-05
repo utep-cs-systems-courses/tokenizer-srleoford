@@ -35,7 +35,10 @@ int main(){
 
   history = init_history();
   add_history(history, string);
-  add_history(history, "I guess that's the end of that...\n");
+  printf("History str: %s\n", history->root->str);
+  printf("History ID: %d\n", history->root->id);
+  printf("History next: %s\n", (history->root->next == NULL) ? YES: NO);
+  add_history(history, "I guess that's over.\n");
   add_history(history, "Just kidding! Here's more strings fo' yo' history!\n");
   printf("\nString in history is %s\n", get_history(history, 1));
   

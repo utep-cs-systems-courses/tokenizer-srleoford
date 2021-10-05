@@ -17,8 +17,8 @@ int non_space_char(char c);
    str does not contain any words. */
 char *word_start(char *str); 
 
-/* Returns a pointer terminator char following *word */
-char *word_terminator(char *word);
+/* Returns a pointer end char following *word */
+char *word_end(char *word);
 
 /* Counts the number of words in the string argument. */
 int count_words(char *str);

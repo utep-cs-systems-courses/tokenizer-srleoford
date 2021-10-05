@@ -38,13 +38,17 @@ void add_history(List *list, char *str){
   newItem->id = ++hItems;
   newItem->str = copy_str(str, strlen(str));
   newItem->next = NULL;
-  
-  while (list->root != NULL){
-    printf("Root for null is %d\n", (list->root == NULL) ? 1: 0);
-    list->root = list->root->next;
+
+  List *curr = list;
+  if (list->root == NULL)
+    list->root = newItem;
+  else {
+    curr = list;
+    while (curr->root->next != NULL){
+      curr->root = curr->root->next;
+    }
+    curr->root->next = newItem;
   }
-  printf("Adding %d item\n", hItems);
-  list->root = newItem;
 }
 
 /* Retrieve the string stored in the node where Item->id == id.
@@ -52,13 +56,15 @@ void add_history(List *list, char *str){
    int id - the id of the Item to find */
 char *get_history(List *list, int id){
   printf("Traversing through list...\n");
-  List *temp = list;
-  while (temp->root != NULL){
-    if (temp->root->id == id)
-      return temp->root->str;
+  List *curr = list;
+
+  while (curr->root != NULL){
+    printf("Current value is %d\n", curr->root->id);
+    if (curr->root->id == id)
+      return curr->root->str;
     else {
-      printf("Item %d doesn't match Item %d\n", id, temp->root->id);
-      temp->root = temp->root->next;
+      printf("Item %d doesn't match Item %d\n", id, curr->root->id);
+      curr->root = curr->root->next;
     }
   }
   printf("Item %d isn't in history\n", id);

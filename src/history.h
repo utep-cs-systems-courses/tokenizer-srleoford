@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "tokenizer.h"
 
 #ifndef _HISTORY_
 #define _HISTORY_
@@ -15,16 +17,15 @@ typedef struct s_List {
 } List;
 
 List *history;
+int hItems = 0;
 
 /* Initialize the linked list to keep the history. */
 List* init_history(){
-  List* temp;
+  List* newList = (List *) malloc(sizeof(List));
 
-  temp->root->id = 0;
-  temp->root->str = "Temporary String";
-  temp->root->next = NULL;
+  newList->root = NULL;
 
-  return temp;
+  return newList;
 }
 
 /* Add a history item to the end of the list.
@@ -32,27 +33,45 @@ List* init_history(){
    char* str - the string to store
 */
 void add_history(List *list, char *str){
-  int i;
-  Item *temp;
+  Item *newItem = (Item*) malloc(sizeof(struct s_Item));
+
+  newItem->id = ++hItems;
+  newItem->str = copy_str(str, strlen(str));
+  newItem->next = NULL;
   
-  printf("About to traverse through the list...\n");
-  printf("temp is %d\n", list->root->id);
-  for (i = 0, temp = list->root; temp != NULL; temp = temp->next, i++)
-    printf("Checking %d Item in the list\n", i);
-  printf("ID for new Item is %d\n", i);
-  
-  temp->id = i;
-  temp->str = str;
-  temp->next = NULL;
+  while (list->root != NULL){
+    printf("Root for null is %d\n", (list->root == NULL) ? 1: 0);
+    list->root = list->root->next;
+  }
+  printf("Adding %d item\n", hItems);
+  list->root = newItem;
 }
 
 /* Retrieve the string stored in the node where Item->id == id.
    List* list - the linked list
    int id - the id of the Item to find */
-char *get_history(List *list, int id);
+char *get_history(List *list, int id){
+  printf("Traversing through list...\n");
+  List *temp = list;
+  while (temp->root != NULL){
+    if (temp->root->id == id)
+      return temp->root->str;
+    else {
+      printf("Item %d doesn't match Item %d\n", id, temp->root->id);
+      temp->root = temp->root->next;
+    }
+  }
+  printf("Item %d isn't in history\n", id);
+  return NULL;
+}
 
 /* Print the entire contents of the list. */
-void print_history(List *list);
+void print_history(List *list){
+  while (list->root != NULL){
+    printf("Entry %d: %s\n", list->root->id+1, list->root->str);
+    list->root = list->root->next;
+  }
+}
 
 /* Free the history list and the strings it references. */
 void free_history(List *list);

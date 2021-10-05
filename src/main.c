@@ -34,10 +34,10 @@ int main(){
   //free_tokens(tokens);
 
   history = init_history();
-  printf("About to add to history...\n");
-  printf("ID in the history now is %d\n", history->root->id);
-  add_history(history, "Testing string");
-  printf("String in history is %s\n", history->root->str);
+  add_history(history, string);
+  add_history(history, "I guess that's the end of that...\n");
+  add_history(history, "Just kidding! Here's more strings fo' yo' history!\n");
+  printf("\nString in history is %s\n", get_history(history, 1));
   
   return 0;
 }

@@ -3,13 +3,16 @@
 #include "tokenizer.c"
 #include "history.c"
 
+#define MAXLINE 1000 /* Max input length */
+
 List *history;
 char *duplicate;		/* Seperate string for duplication */
 
-int main(){
-  int i;
-  char* string;
+int getline(char *s, int lim);
 
+int main(){
+  int i, c;
+  char* string;
 
   /* All the tests to make sure that the methods did what they were suppose to do */
   //for (i = 0; string[i] != '\0'; i++){

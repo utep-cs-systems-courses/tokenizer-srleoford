@@ -39,8 +39,9 @@ void add_history(List *list, char *str){
   newItem->next = NULL;
 
   Item *curr = list->root;
+
   if (curr == NULL)
-    curr = newItem;
+    list->root = newItem;
   else {
     while (curr->next != NULL)
       curr = curr->next;
@@ -76,10 +77,10 @@ void print_history(List *list){
 
 /* Free the history list and the strings it references. */
 void free_history(List *list){
-  List *curr = list;
-  while (curr->root != NULL){
-    list->root = curr->root;
-    curr->root = curr->root->next;
+  Item *curr = list->root;
+  while (curr != NULL){
+    list->root = curr;
+    curr = curr->next;
     free(list->root->str);
     free(list->root);
   }

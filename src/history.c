@@ -44,7 +44,7 @@ void add_history(List *list, char *str){
   else {
     while (curr->next != NULL)
       curr = curr->next;
-    curr = newItem;
+    curr->next = newItem;
   }
 }
 
@@ -67,6 +67,7 @@ char *get_history(List *list, int id){
 /* Print the entire contents of the list. */
 void print_history(List *list){
   Item* curr = list->root;
+  
   while (curr != NULL){
     printf("Entry %d: %s\n", curr->id, curr->str);
     curr = curr->next;

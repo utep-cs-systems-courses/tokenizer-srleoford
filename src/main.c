@@ -46,13 +46,12 @@ int main(){
   printf("The # of chars is %d.\n", word_terminator(string)-word_start(string));
   tokenize(string);
   print_tokens(tokens);
-  free_tokens(tokens);
+  //free_tokens(tokens);
 
   history = init_history();
   add_history(history, string);
   add_history(history, "I guess that's over.\n");
   add_history(history, "Just kidding! Here's more strings fo' yo' history!\n");
-  printf("\nID %d in history is %s\n", 2, get_history(history, 2));
   print_history(history);
   free_history(history);
   print_history(history);

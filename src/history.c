@@ -38,13 +38,13 @@ void add_history(List *list, char *str){
   newItem->str = copy_str(str, strlen(str));
   newItem->next = NULL;
 
-  List *curr = list;
-  if (curr->root == NULL)
-    curr->root = newItem;
+  Item *curr = list->root;
+  if (curr == NULL)
+    curr = newItem;
   else {
-    while (curr->root->next != NULL)
-      curr->root = curr->root->next;
-    curr->root->next = newItem;
+    while (curr->next != NULL)
+      curr = curr->next;
+    curr->next = newItem;
   }
 }
 
@@ -66,9 +66,10 @@ char *get_history(List *list, int id){
 
 /* Print the entire contents of the list. */
 void print_history(List *list){
+  Item* curr = list->root;
   while (list->root != NULL){
-    printf("Entry %d: %s\n", list->root->id, list->root->str);
-    list->root = list->root->next;
+    printf("Entry %d: %s\n", curr->id, curr->str);
+    curr = curr->next;
   }
 }
 
@@ -81,6 +82,7 @@ void free_history(List *list){
     free(list->root->str);
     free(list->root);
   }
+  hItems = 0;
 }
 
 #endif

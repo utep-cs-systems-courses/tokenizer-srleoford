@@ -1,0 +1,28 @@
+Project 1: Tokenizer
+====================
+# Instructions:
+
+You should document your tokenizer in this file.
+
+This file is written in the refreshingly simple `markdown` text
+formatting language.
+
+To learn about text formatting using markdown, we encourage you to examine 
+ - [../README.md](../README.md)
+ - the online [Markdown Guide](https://www.markdownguide.org/).# Lab1_arch1_2021
+
+   This will be a brief description of each of the functions and how they
+work. It should be noted that for readability, enumeration of NO and YES are
+for values 0 and 1 respectively. It's much easier to ready this way as if a
+question like, "Is space_char(char c) return a white space?" The other
+mentionable is simply starting a pointer pointer variable for the tokenize
+features since outside the functions, there's no way to refer to the finsihed
+work done. Now, onto the functions.
+
+    Starting off with "space_char" and "non_space_char". They are just
+opposites of each other. They both check for white space characters (specificlly space,
+tab, and newline characters, not all escape sequences), and if the char given
+is white space character will return true or false depending on which function
+is called (space_char looking for the white space, non_space_char excepting
+any other character). The functions "word_start" simply takes in a string and
+assuming there aren't multiple white spaces in the beginning but 

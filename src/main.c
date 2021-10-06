@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tokenizer.h"
-#include "history.h"
+#include "tokenizer.c"
+#include "history.c"
 
+List *history;
 char *duplicate;		/* Seperate string for duplication */
 
 int main(){
   int i;
-  char* string = "Hello world! Look!!! My beautiful wife is checking out my work! Isn't she amazing?!";
+  char* string;
 
-  printf("Test string is: %s\n\n", string);
+
+  /* All the tests to make sure that the methods did what they were suppose to do */
   //for (i = 0; string[i] != '\0'; i++){
     //printf("Is there a char at position is %d? %s\n", i,
     //	   (non_space_char(string[i]) == 1) ? "Yes" : "No");

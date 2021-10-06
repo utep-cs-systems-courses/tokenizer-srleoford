@@ -3,7 +3,7 @@ EXEC = main tester
 
 all: main tester
 
-main.o: tokenizer.h history.h main.c
+main.o: tokenizer.c history.c main.c
 	gcc -c $^ $(CFLAGS)
 tester.o: tokenizer.h history.h tester.c
 	gcc -c $^ $(CFLAGS)
